@@ -1,4 +1,4 @@
-{% extends 'add_recipe.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %}
 <h3>Edit Recipe</h3>
 <div class="row">
     <form action="{{ url_for('update_recipe', recipe_id=recipe._id) }}" method="POST" class="col s12">
@@ -6,7 +6,6 @@
         <!--recipe name option-->
         <div class="row">
             <div class="input-field col s12">
-                <i class="material-icons prefix">assignment</i>
                 <input id="title" name="title" type="text" value="{{recipe.title}}">
                 <label for="icon_prefix">Recipe Name</label>
             </div>
@@ -15,7 +14,6 @@
         <!--recipe description option-->
         <div class="row">
             <div class="input-field col s12">
-                <i class="material-icons prefix">subject</i>
                 <textarea name="description" id="description" class="materialize-textarea">{{recipe.description}}</textarea>
                 <label for="icon_telephone">Recipe Description</label>
             </div>
@@ -26,7 +24,7 @@
             <div class="input-field col s6">
                 
                 <!--category-->
-                <select id="category" name="category_name">
+                <select id="category_name" name="category_name">
                     
                   <option value="" disabled selected>Choose category</option>
                   

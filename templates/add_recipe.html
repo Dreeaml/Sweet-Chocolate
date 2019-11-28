@@ -7,11 +7,15 @@
                 
                 <!--title and description-->
                 <div class="input_field">
-                    <div class="input_field"><input id="title" name="title" type="text" value="" required>
-                    <label for="title">Recipe name</label></div>
+                    <div class="input_field">
+                        <input id="title" name="title" type="text" value="" required>
+                        <label for="title">Recipe name</label>
+                    </div>
                     
-                    <div class="input_field"><input id="description" name="description" type="text" value="" required>
-                    <label for="description">Recipe description</label></div>
+                    <div class="input_field">
+                        <textarea name="description" id="description" class="materialize-textarea"></textarea>
+                        <label for="description">Recipe Description</label>
+                    </div>
                 </div>
                 
                 <!--ingredients-->
@@ -54,11 +58,7 @@
                   <option value="" disabled selected>Choose category</option>
                   
                   {% for cat in categories %}
-                      {% if cat.category_name == recipe.category_name %}
-                      <option value="{{cat.category_name}}" selected>{{cat.category_name}}</option>
-                          {% else %}
-                          <option value="{{cat.category_name}}">{{cat.category_name}}</option>
-                      {% endif%}
+                      <option value="{{cat.category_name}}">{{cat.category_name}}</option>
                   {% endfor %}
                 </select>
                 

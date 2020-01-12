@@ -23,7 +23,7 @@ def insert_recipe():
     recipes =  mongo.db.recipes
     recipes.insert_one(request.form.to_dict())
     return redirect(url_for('get_recipes'))
-    
+
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
     the_recipe =  mongo.db.recipe.find_one({"_id": ObjectId(recipe_id)})
@@ -38,14 +38,14 @@ def update_recipe(recipe_id):
     {
         'title':request.form.get('title'),
         'category_name':request.form.get('category_name'),
-        'description': request.form.get('description'),
-        'cook_time': request.form.get('cook_time'),
-        'prep_time':request.form.get('prep_time')
-        'number_servings':request.form.get('number_servings')
-        'imgUrl':request.form.get('imgUrl')
-        'ingredients':request.form.get('ingredients')
-        'author':request.form.get('author')
-        'origin':request.form.get('origin')
+        'description':request.form.get('description'),
+        'cook_time':request.form.get('cook_time'),
+        'prep_time':request.form.get('prep_time'),
+        #'number_servings':request.form.get('number_servings'),
+        'imgUrl':request.form.get('imgUrl'),
+        'ingredients':request.form.get('ingredients'),
+        'author':request.form.get('author'),
+        'origin':request.form.get('origin'),
     })
     return redirect(url_for('get_recipes'))
 

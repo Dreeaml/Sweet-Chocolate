@@ -1,0 +1,41 @@
+body {
+  background-repeat: no-repeat;
+}
+
+h5{
+    font-size: 20px;
+    font-weight: 1000;
+}
+nav .nav-wrapper {
+    position: relative;
+    height: 100%;
+    padding-left: 15px;
+}
+.card {
+    background-color: #f3c4c6e0;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  position: relative;
+    border-radius: 2px;
+    margin: 10%;
+    padding: 5%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.page-footer{
+    padding: 2%;
+}
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}

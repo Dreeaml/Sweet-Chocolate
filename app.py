@@ -2,12 +2,15 @@ import os
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from os import path
+
+if path.exists("env.py"):
+    import env
 
 app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = 'sweet_chocolate'
-#app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
-app.config["MONGO_URI"] = 'mongodb+srv://dreeaml_06:qV8hoAKKPSmzZB7v@myfirstcluster-aklf4.mongodb.net/sweet_chocolate?retryWrites=true&w=majority'
+app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 
 mongo = PyMongo(app)
 
@@ -33,14 +36,10 @@ def insert_recipe():
     return redirect(url_for("get_recipes"))
 
 #open a recipe
-@app.route('/show_recipe/<recipe_id>/')
+@app.route('/show_recipe/<recipe_id>', methods=['GET'])
 def show_recipe(recipe_id):
     recipe_id = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-
-@app.route('/delete_recipe/<recipe_id>')
-def delete_recipe(recipe_id):
-    mongo.db.recipe.remove({'_id': ObjectId(recipe_id)})
-    return redirect(url_for('get_recipes'))
+    return render_template("show_recipe.html", recipe=recipe_id)
 
 #categories create, delete, edit, update and insert.
 
@@ -48,7 +47,7 @@ def delete_recipe(recipe_id):
 def get_categories():
     return render_template('categories.html',
                            categories=mongo.db.categories.find())
-                           
+
 @app.route('/delete_category/<category_id>')
 def delete_category(category_id):
     mongo.db.categories.remove({'_id': ObjectId(category_id)})
@@ -57,7 +56,8 @@ def delete_category(category_id):
 @app.route('/edit_category/<category_id>')
 def edit_category(category_id):
     return render_template('editcategory.html',
-    categories=mongo.db.categories.find_one({'_id': ObjectId(category_id)}))
+                           category=mongo.db.categories.find_one(
+                           {'_id': ObjectId(category_id)}))
 
 @app.route('/update_category/<category_id>', methods=['POST'])
 def update_category(category_id):

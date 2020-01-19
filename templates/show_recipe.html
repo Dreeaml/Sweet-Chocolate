@@ -1,38 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="card col s4">
     <div class="row">
-        {% for recipe in recipes %}
-            <div class="container">
-                <div class="row">
-                    <img src="/static/images/chocolate_cake.jpg" id="recipe-image"></img>
-                    <h1 class="recipe-title">{{recipe.title}}</h1>
-                </div>
-                <div class="details-container">
-                    <p class="recipe-details" id="recipe-author"><i class="fas fa-user show-recipe-icon"></i>Author: {{recipe.author()}}</p>
-                    <p class="recipe-details" id="recipe-serves"><i class="fas fa-utensils show-recipe-icon"></i> Serves: {{recipe.serves}}</p>
-                    <p class="recipe-details" id="recipe-time"><i class="fas fa-clock show-recipe-icon"></i> Cooking time: {{recipe.cook_time}} minutes</p>
-                    <p class="recipe-details" id="recipe-category"><i class="fas fa-hamburger"></i> Category:{{recipe.category_name}} </p>
-                    <p class="recipe-details" id="recipe-difficulty"><i class="fab fa-gripfire"></i>Difficulty: {{recipe.difficulty}}</p>
-                </div>
-                <div class="row">
-                    <p class="recipe-description" id="recipe-description"><i class="fas fa-bars"></i>{{recipe.description()}}</p>
-                </div>
-                <div class=ingredients-container">
-                    <h5 class="section-heading">Ingredients</h5>
-                    <ul class="ingredients_list">
-                        {% for ingredient in ingredients %}
-                            <li class="ingredients_list"> {{ ingredient[1][1] }} {{ ingredient[2][1] }} {{ ingredient[0][1] }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="steps-container">
-                    <h5 class="steps-heading">Steps</h5>
-                    <p class="recipe-steps" id="recipe-steps">{{recipe.steps}}</p>
-                </div>
+        <div class="container">
+            <div class="row">
+                <h1 class="recipe-title">{{recipe.recipe_title}}</h1>
             </div>
-            <footer>
-            <div></div>
-            </footer>
-        {% endfor %}
+            <div class="details-container">
+                <p class="recipe-details" id="recipe-author">Author: {{recipe.author}}</p>
+                <p class="recipe-details" id="recipe-serves">Serves: {{recipe.serves}}unites</p>
+                <p class="recipe-details" id="recipe-time"> Cooking time: {{recipe.cooking_time}} minutes</p>
+                <p class="recipe-details" id="recipe-category">Category:{{recipe.category_name}} </p>
+                <p class="recipe-details" id="recipe-difficulty"> Difficulty: {{recipe.difficulty_type}}</p>
+            </div>
+            <div class="description-container">
+                <p class="recipe-description" id="recipe-description">Description: {{recipe.description}}</p>
+            </div>
+            <div class=ingredients-container">
+                <ul class="ingredients_list">
+                    <p class="recipe-details" id="recipe-ingredients">Ingredients: {{recipe.ingredient}}</p>
+                </ul>
+            </div>
+            <div class="steps-container">
+                <p class="recipe-steps" id="recipe-steps">Instructions: {{recipe.steps}}</p>
+            </div>
+        </div>
     </div>
+</div>
 {% endblock %}

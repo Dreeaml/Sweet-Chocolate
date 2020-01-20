@@ -1,16 +1,16 @@
 import os
+from dotenv import load_dotenv
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from os import path
 
-if path.exists("env.py"):
-    import env
-
 app = Flask(__name__)
+load_dotenv()
 
 app.config["MONGO_DBNAME"] = 'sweet_chocolate'
-app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
+app.config["MONGO_URI"] = os.getenv('MONGO_URI')
+#app.config["MONGO_URI"] = 'mongodb+srv://dreeaml_06:qV8hoAKKPSmzZB7v@myfirstcluster-aklf4.mongodb.net/sweet_chocolate?retryWrites=true&w=majority'
 
 mongo = PyMongo(app)
 
@@ -32,7 +32,11 @@ def add_recipe():
 @app.route('/insert_recipe/', methods=['POST'])
 def insert_recipe():
     recipes = mongo.db.recipes
-    recipes.insert_one(request.form.to_dict())
+    category = mongo.db.categories.find_one({"category_name": request.form.to_dict()["category_name"]})
+    post_data = request.form.to_dict()
+    post_data["category_name"] = ObjectId(category.get('_id')) 
+    recipes.insert_one(post_data)
+    print(mongo.db.dereference(category)["category_name"])
     return redirect(url_for("get_recipes"))
 
 #open a recipe
@@ -40,6 +44,13 @@ def insert_recipe():
 def show_recipe(recipe_id):
     recipe_id = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template("show_recipe.html", recipe=recipe_id)
+
+
+@app.route('/update_recipe/<recipe_id>', methods=['POST'])
+def update_recipe(recipe_id):
+    mongo.db.recipes.update(
+        {'_id': ObjectId(recipe_id)})
+    return redirect(url_for('get_recipes'))
 
 #categories create, delete, edit, update and insert.
 

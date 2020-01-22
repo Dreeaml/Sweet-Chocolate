@@ -72,6 +72,10 @@ The database is structured with four collections, recipes, categories, difficult
 
 The recipes document itself contains unstuctured data. With key/value pairs that make up a description of the recipe. 
 
+[Here]([https://github.com/Dreeaml/Sweet-Chocolate/tree/master/static](https://github.com/Dreeaml/Sweet-Chocolate/tree/master/static)) can be found an image of the data structure 
+
+
+
 ## Deployment
 his site is hosted using GitHub pages, deployed directly from the master branch. To run locally, you can clone this repository directly into the editor of your choice by pasting git clone https://github.com/Dreeaml/Sweet-Chocolate.git.
 

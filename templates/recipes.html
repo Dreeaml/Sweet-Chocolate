@@ -5,19 +5,20 @@
         <h1>Recipes</h1>
     </div>
     {% for recipe in recipes %}
-    <div class="card col s4">
+    <div class="card col s6">
         <a href="{{url_for('show_recipe', recipe_id=recipe._id)}}">
         <div class="container">
-            <h5>{{recipe.recipe_title}}</h5>
+        <div style="background-color: #b76a6aba; padding:0.5%; margin-top:5%; text-align:center; color:#000404;">
+            <h4 style="text-transform: capitalize;">{{recipe.recipe_title}}</h4>
+        </div>
             <div class="row">
-                <ul>
-                    <li class="recipe-details" id="recipe-serves">Serves: {{recipe.serves}}</li>
-                    <li class="recipe-details" id="recipe-time">Cooking time: {{recipe.cooking_time}} </li>
-                    <li class="recipe-details" id="recipe-category"> Category: {{recipe.category_name.category_name}}</li>
-                    <li class="recipe-details" id="recipe-origin">Origin: {{recipe.origin}}</li>
-                    <li class="recipe-details" id="recipe-difficulty"> Difficulty: {{recipe.difficulty_type}}</li>
-                    <li class="recipe-details" id="recipe-ingredients">Ingredients: {{recipe.ingredient}}</li>
-                </ul>
+                    <p class="recipe-details" id="recipe-serves">Serves: {{recipe.serves}} units</p>
+                    <p class="recipe-details" id="recipe-time">Cooking time: {{recipe.cooking_time}} </p>
+                    <p class="recipe-details" id="recipe-category"> Category: {{recipe.category_name}}</p>
+                    <p class="recipe-details" id="recipe-origin">Origin: {{recipe.origin}}</lp>
+                    <p class="recipe-details" id="recipe-difficulty"> Difficulty: {{recipe.difficulty_type}}</p>
+                    <p class="recipe-details" id="recipe-ingredients">Ingredients: {{recipe.ingredient}}</p>
+                <a href="{{url_for('show_recipe', recipe_id=recipe._id)}}"class="btn-floating btn-large waves-effect waves-light teal lighten-2" style="float: right;"><i class="fas fa-info"></i></a>
             </div> 
 
         </div>

@@ -10,7 +10,6 @@ load_dotenv()
 
 app.config["MONGO_DBNAME"] = 'sweet_chocolate'
 app.config["MONGO_URI"] = os.getenv('MONGO_URI')
-#app.config["MONGO_URI"] = 'mongodb+srv://dreeaml_06:qV8hoAKKPSmzZB7v@myfirstcluster-aklf4.mongodb.net/sweet_chocolate?retryWrites=true&w=majority'
 
 mongo = PyMongo(app)
 
@@ -18,7 +17,11 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_recipes') 
 def get_recipes():
-    return render_template('recipes.html', recipes=mongo.db.recipes.find())
+    recipes = list(mongo.db.recipes.find())
+    categories = list(mongo.db.categories.find())
+    for recipe in recipes : 
+        recipe["category_name"] = list(filter(lambda x: x["_id"] == recipe["category_name"] , categories))[0]["category_name"]
+    return render_template('recipes.html', recipes=recipes)
 
 #create new recipe
 @app.route('/add_recipe') 
@@ -36,7 +39,6 @@ def insert_recipe():
     post_data = request.form.to_dict()
     post_data["category_name"] = ObjectId(category.get('_id')) 
     recipes.insert_one(post_data)
-    print(mongo.db.dereference(category)["category_name"])
     return redirect(url_for("get_recipes"))
 
 #open a recipe

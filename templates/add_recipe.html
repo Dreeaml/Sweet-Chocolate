@@ -5,7 +5,7 @@
         <h1>Add Recipe</h1>
     </div>
     <div class="row">
-        <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12 add-recipe-form" >
+        <form action="{{url_for('insert_recipe')}}" method="POST" class="col s12 add-recipe-form" >
             <div class="row">
                 <div class="input-field col s12">
                     
@@ -15,7 +15,7 @@
                             <div class="row">
                                 <h6>Recipe Name</h6>
                             </div>
-                            <input placeholder="" id="recipe_title" name="recipe_title" type="text" class="validate" data-length="20" required>
+                            <input placeholder="" id="recipe_title" name="recipe_title" type="text" class="validate" data-length="20" autocapitalize="sentences" required>
                         </div>
                         <div class="input_field col s12">
                             <div class="row">
@@ -33,7 +33,7 @@
                                 <h6>Recipe Category</h6>
                             </div>
                             <select id="category" name="category_name" required > 
-                                <option value="" disabled selected>Choose Category</option>
+                                <option value="" disabled selected></option>
                                 {% for cat in categories %}
                                 <option value="{{cat.category_name}}">{{cat.category_name}}</option>
                                 {% endfor %}
@@ -45,7 +45,7 @@
                                 <h6>Recipe time</h6>
                             </div>
                             <select id="duration" name="cooking_time" required>
-                                <option value="" disabled selected>Choose Cooking time</option>
+                                <option value="" disabled selected></option>
                                 {% for coo in duration %}
                                 <option value="{{coo.cooking_time}}">{{coo.cooking_time}}</option>
                                 {% endfor %}
@@ -92,7 +92,7 @@
                                 <h6>Recipe Difficulty</h6>
                             </div>
                             <select id="difficulty" name="difficulty_type" required>
-                                <option value="" disabled selected>Choose Recipe Difficulty</option>
+                                <option value="" disabled selected></option>
                                 {% for dif in difficulty %} 
                                 <option value="{{dif.difficulty_type}}">{{dif.difficulty_type}}</option>
                                 {% endfor %}

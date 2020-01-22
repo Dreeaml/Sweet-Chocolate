@@ -1,57 +1,90 @@
-Sweet Chocolate 
-Sweet chocolate is a Recipe Book for those passionates of sweets, cakes and confectionery. 
-The aim of this webside is to provide the user a place to store, share their masterpieces (recipes) with the world.
+## Sweet Chocolate
+The project is a database-driven online recipe book. Convining Flask to create the application, MongoDB as a non-relational database to store data and python as programming language for the funcionalities, creates a clever and usufull interface for the public. This demostrate one more time the power of coding and what is possible to build.
 
-Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+## UX
+Sweet chocolate is a Recipe Book for those passionates of sweets, cakes and confectionery. The aim of this webside is to provide an interface to create, edit, store and share sweet recipes with the rest of the world.
 
-Prerequisites
-What things you need to install the software and how to install them
+More specificly, Sweet Chocolate has a ***Home*** page where users can see all created recipes and open them. An ***Add recipe*** buttom to create and insert a recipe in the database and therefore include it in the main view where is accesible for everyone. In this section, users are able to write and choose the information related to the recipe such as name, description, category, cooking time, difficulty, ingredients and instructions.
 
-Give examples
-Installing
-A step by step series of examples that tell you how to get a development env running
+Additionally,  a ***Manage categories*** button is included in the navbar where is possible to create new categories, delete, edit and update existing ones.
 
-Say what the step will be
 
-Give the example
-And repeat
+  
 
-until finished
-End with an example of getting some data out of the system or using it for a little demo
+In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
 
-Running the tests
-Explain how to run the automated tests for this system
+  
+Here can be found some diagrams and mockups: [Click here]()
 
-Break down into end to end tests
-Explain what these tests test and why
+## Features
 
-Give an example
-And coding style tests
-Explain what these tests test and why
+In this section, you should go over the different parts of your project, and describe each in a sentence or so.
 
-Give an example
-Deployment
-Add additional notes about how to deploy this on a live system
+  ### Existing Features
 
-Built With
-Dropwizard - The web framework used
-Maven - Dependency Management
-ROME - Used to generate RSS Feeds
-Contributing
-Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
+ - [Home page with recipes previews](https://github.com/Dreeaml/Sweet-Chocolate/blob/master/templates/recipes.html)
+ - [Show recipe](https://github.com/Dreeaml/Sweet-Chocolate/blob/master/templates/show_recipe.html) page that amplifies the preview of each recipe.
+ - [Add recipe page](https://github.com/Dreeaml/Sweet-Chocolate/blob/master/templates/add_recipe.html)
+ - [Manage categories page](https://github.com/Dreeaml/Sweet-Chocolate/blob/master/templates/categories.html)
+ - [Add](https://github.com/Dreeaml/Sweet-Chocolate/blob/master/templates/addcategory.html) and [edit](https://github.com/Dreeaml/Sweet-Chocolate/blob/master/templates/editcategory.html) pages for categories.
+ 
+### Features Left to Implement
 
-Versioning
-We use SemVer for versioning. For the versions available, see the tags on this repository.
+The idea is to convert it into an Instagram style platform but specially for chefs, food and kirchen lovers. Including users accounts, follower and following options, share options, ect.
+ 
+## Technologies Used
 
-Authors
-Billie Thompson - Initial work - PurpleBooth
-See also the list of contributors who participated in this project.
+-   Python 3.4.3
+-   Flask (Python Microframework)
+-   BootStrap 3
+-   Google Fonts
+-   JavaScript
+-   CSS
+-   HTML
+-   Materialize
 
-License
-This project is licensed under the MIT License - see the LICENSE.md file for details
 
-Acknowledgments
-Hat tip to anyone whose code was used
-Inspiration
-etc
+## Testing
+
+#### Testing Add Recipe Form
+
+-   Test that a new added recipe immediately appears on the website's homepage
+-   Go to the form and try to submit empty inputs to make sure that the "required" message appear.
+- Go to Add recipe and make sure the database is connected.
+- Ensure that if a category is edited, the changes will also appear in the recipes that have used it.
+-  Test that the select fields are producing the correct options.
+
+#### Testing Edit Categories
+
+-   Make sure that the form is being populated with the correct data from the MongoDB document when editing recipe.
+-   Ensure a category is able to be updated more than once without any bugs occuring (such as fields going missing or name clashes causing issues)
+
+#### Other Tests
+
+-   Make sure the 'delete category' functionality is removing the correct document.
+-   Ensure that newly added categories become available on the add recipe form.
+-   Make sure removing a cuisine that recipes have as their cuisine doesn't cause the website to crash.
+-   Test responsiveness of each page on different screen sizes and ensure all elements stay readable. 
+- The webside is tried in Responsinator ([https://www.responsinator.com/](https://www.responsinator.com/)) to check if all the media queries fit in Iphone, tablets and laptop screens. 
+
+## Data
+The database is structured with four collections, recipes, categories, difficulty and duration. Recipes and categories are related since users can edit/edit categories, so those changes can be reflected also in recipe that use that categorie.
+
+The recipes document itself contains unstuctured data. With key/value pairs that make up a description of the recipe. 
+
+## Deployment
+his site is hosted using GitHub pages, deployed directly from the master branch. To run locally, you can clone this repository directly into the editor of your choice by pasting git clone https://github.com/Dreeaml/Sweet-Chocolate.git.
+
+The project is deployed on [Heroku]([https://sweet-chocolate.herokuapp.com/](https://sweet-chocolate.herokuapp.com/))
+  
+
+## Credits
+
+### Media
+
+The backgroud photo used in this site was obtained from [Unsplash](https://unsplash.com/).
+The favicon was generated with [Favicon.ico]([https://www.favicon-generator.org/](https://www.favicon-generator.org/))
+
+## Acknowledgements
+
+I received inspiration for this project from [Cooking Ideas](http://cooking-ideas.herokuapp.com/index), [Live to cook](https://online-cookbook-js.herokuapp.com/), [Task Manager](https://github.com/Code-Institute-Solutions/TaskManager/tree/master/07-AddingApplicationNavigation/01-adding_a_navigation_bar).
